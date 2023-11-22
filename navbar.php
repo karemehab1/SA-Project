@@ -3,12 +3,13 @@
       <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!--
       <a href="./index.php" class="navbar-brand">
         <img src="./images/logo.png" alt="icon" style="width: 60px;
     margin-left: 16px;">
     &copy
       </a>
-
+  -->
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
           
