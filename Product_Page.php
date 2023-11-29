@@ -25,46 +25,46 @@ check_login($db)
       </div>
     </div>
     <script>
-    let cars=[
-      <?php
+    let cars = [
+    <?php
+    $sql = "SELECT name, image, Price, id FROM pro";
+    $result = mysqli_query($db, $sql);
 
-              $sql = "SELECT Name , Photo , Price , Id From car";
-              $result = mysqli_query($db , $sql);
-
-
-              while($row = mysqli_fetch_assoc($result)){
-
-                echo "{Id:'" . $row['Id']. "',Photo:'".$row['Photo']."',Name:'".$row['Name']."',Price:'".$row['Price']. "'},";
-
-
-              }
-
-        ?>
-    ];
-    function get_item(data){
-      return " \
-                <a href = 'cars.php?Id=" + data['Id']+ "' style = 'text-decoration: none;' > \
-                <div class='card__body'> \
-                <div class='card__body-cover'> \
-                  <img src='"+data['Photo']+"' alt=''> \
-                </div> \
-                <header class='card__body-header'> \
-                  <p class='card__body-header-subtitle'>"+data['Name']+"</p> \
-                </header> \
-                <h2>"+data['Price']+ "$</h2> \
-              </div> \
-                </a>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "{id:'" . $row['id'] . "', image:'" . $row['image'] . "', name:'" . $row['name'] . "', price:'" . $row['Price'] . "'},";
     }
-    for(car of cars){
-      document.getElementById("main-cont").innerHTML+=get_item(car);
+    ?>
+];
+
+function get_item(data) {
+    return "\
+    <a href='cars.php?Id=" + data['id'] + "' style='text-decoration: none;'>\
+      <div class='card__body'>\
+        <div class='card__body-cover'>\
+          <img src='" + data['image'] + "' alt=''>\
+        </div>\
+        <header class='card__body-header'>\
+          <p class='card__body-header-subtitle'>" + data['name'] + "</p>\
+        </header>\
+        <h2>" + data['price'] + "$</h2>\
+      </div>\
+    </a>";
+}
+
+for (car of cars) {
+    document.getElementById("main-cont").innerHTML += get_item(car);
+}
+
+function search() {
+    let text = document.getElementById("searchbox").value;
+    document.getElementById("main-cont").innerHTML = "";
+    for (car of cars) {
+        if (car.name.toLowerCase().includes(text.toLowerCase())) {
+            document.getElementById("main-cont").innerHTML += get_item(car);
+        }
     }
-    function search(){
-      let text = document.getElementById("searchbox").value;
-      document.getElementById("main-cont").innerHTML="";
-      for(car of cars){
-        if(car.Name.toLowerCase().includes(text.toLowerCase())) document.getElementById("main-cont").innerHTML+=get_item(car);
-      }
-    }
+}
+
     </script>
     <?php include "cta+footer.php";?>
   </body>

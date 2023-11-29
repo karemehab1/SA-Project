@@ -1,7 +1,10 @@
 <?php
     include "Functions.php";
     $logged_in=isset($_SESSION['User_name']);
-
+  
+    if(!isset($_SESSION['User_name']) || $_SESSION['userType'] == "admin"){
+            header("Location: index.php");
+    }
     if($_SERVER['REQUEST_METHOD'] == "POST" && $logged_in){
 
         $name = $_SESSION['name'];

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_SESSION['User_name'])){
+    if(!isset($_SESSION['User_name']) || $_SESSION['userType'] == "admin"){
             header("Location: index.php");
     }
     include "connect_db.php";
@@ -86,7 +86,7 @@
                                    
                                         if(isset($_COOKIE['Last_viewed_car'])){
 
-                                            $sql = "SELECT * FROM car WHERE ID = ' ". $_COOKIE["Last_viewed_car"] . "' LIMIT 1";
+                                            $sql = "SELECT * FROM pro WHERE ID = ' ". $_COOKIE["Last_viewed_car"] . "' LIMIT 1";
                                             $result = mysqli_query($db , $sql);
                                             $row = mysqli_fetch_assoc($result);
 
@@ -96,12 +96,12 @@
                                             <a href = 'cars.php?Id=". $_COOKIE["Last_viewed_car"] . " '>
                                             <div class='card__body'>
                                   <div class='card__body-cover'>
-                                    <img src='". $row['photo']."' style = 'width :233px'alt=''>
+                                    <img src='". $row['image']."' style = 'width :233px'alt=''>
                                   </div>
                                   <header class='card__body-header'>
-                                    <p class='card__body-header-subtitle'>".$row['Name']."</p>
+                                    <p class='card__body-header-subtitle'>".$row['name']."</p>
                                   </header>
-                                  <h2>" . $row['Price'] ."$</h2>
+                                  <h2>" . $row['price'] ."$</h2>
                                 </div>
                                  </a>   ";
 

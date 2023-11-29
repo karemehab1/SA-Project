@@ -38,7 +38,13 @@ $logged_in=check_login($db);
 
                         echo "<div class = 'Welcome_message' style = '    color: #fff;
     font-size: 30px;'> hello Mr . " . $_SESSION['name'] . "</div>";
-
+                        if($_SESSION['userType'] == "admin"){
+                          echo "<div class = 'Welcome_message' style = '    color: #fff;
+                          font-size: 30px; '>hello admin</div>";
+                        }else{
+                          echo "<div class = 'Welcome_message' style = '    color: #fff;
+                          font-size: 30px; '>hello user</div>";
+                        }
 
                     }else{
 
@@ -75,16 +81,15 @@ $logged_in=check_login($db);
         <div style="display: flex; justify-content: space-between; margin: 15px 5%; flex-wrap: wrap; gap: 10px;">
         <?php
 
-                    $sql = "SELECT Name , Photo , Price , Id From car LIMIT 6";
+                    $sql = "SELECT Name , image , Price , Id From pro LIMIT 6";
                     $result = mysqli_query($db , $sql);
 
                     while($row = mysqli_fetch_assoc($result)){
-
                       echo "
                       <a href = 'cars.php?Id=" . $row['Id']. "' style = 'text-decoration: none;' >
                       <div class='card__body'>
                       <div class='card__body-cover'>
-                        <img src='".$row['Photo']."' alt=''>
+                        <img src='".$row['image']."' alt=''>
                       </div>
                       <header class='card__body-header'>
                         <p class='card__body-header-subtitle'>".$row['Name']."</p>
@@ -136,56 +141,56 @@ $logged_in=check_login($db);
 
     <section id="testimonials">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-pause="hover" data-keyboard="true">
-        <h1>Best salling cars</h1>
+        <h1>Best salling Products</h1>
           <div class="carousel-inner">
             <?php
            
-            $sql = "SELECT * From car";
+            $sql = "SELECT * From pro";
             $result = mysqli_query($db , $sql);
             $row = mysqli_fetch_assoc($result);
            ?>
                     
 
 <div class='carousel-item active'>
-<a href = "cars.php?Id=<?php echo $row['Id'] ?>">
-<h2 class='testimonial-text'><?php echo $row['Name'] ?></h2>
-<img class='img-section ' src='<?php echo $row['photo'] ?>'>
-<em><?php echo $row['Price'] ?>$</em>
+<a href = "cars.php?Id=<?php echo $row['id'] ?>">
+<h2 class='testimonial-text'><?php echo $row['name'] ?></h2>
+<img class='img-section ' src='<?php echo $row['image'] ?>'>
+<em><?php echo $row['price'] ?>$</em>
 </a></div>
 
 <?php $row = mysqli_fetch_assoc($result); ?>
 <div class='carousel-item'>
-<a href = "cars.php?Id=<?php echo $row['Id'] ?>">
-<h2 class='testimonial-text '><?php echo $row['Name'] ?></h2>
-<img class='testimonial-image img-section' src='<?php echo $row["photo"] ?>'>
-<em><?php echo $row['Price']; ?>$</em>
+<a href = "cars.php?Id=<?php echo $row['id'] ?>">
+<h2 class='testimonial-text '><?php echo $row['name'] ?></h2>
+<img class='testimonial-image img-section' src='<?php echo $row["image"] ?>'>
+<em><?php echo $row['price']; ?>$</em>
                   </a>
 </div>
 
 <?php $row = mysqli_fetch_assoc($result); ?>
 <div class='carousel-item'>
-<a href = "cars.php?Id=<?php echo $row['Id'] ?>">
-<h2 class='testimonial-text '><?php echo $row['Name'] ?></h2>
-<img class='testimonial-image img-section' src='<?php echo $row["photo"] ?>'>
-<em><?php echo $row['Price']; ?>$</em>
+<a href = "cars.php?Id=<?php echo $row['id'] ?>">
+<h2 class='testimonial-text '><?php echo $row['name'] ?></h2>
+<img class='testimonial-image img-section' src='<?php echo $row["image"] ?>'>
+<em><?php echo $row['price']; ?>$</em>
                   </a>
 </div>
 
 <?php $row = mysqli_fetch_assoc($result); ?>
 <div class='carousel-item'>
-<a href = "cars.php?Id=<?php echo $row['Id'] ?>">
-<h2 class='testimonial-text '><?php echo $row['Name'] ?></h2>
-<img class='testimonial-image img-section' src='<?php echo $row["photo"] ?>'>
-<em><?php echo $row['Price']; ?>$</em>
+<a href = "cars.php?Id=<?php echo $row['id'] ?>">
+<h2 class='testimonial-text '><?php echo $row['name'] ?></h2>
+<img class='testimonial-image img-section' src='<?php echo $row["image"] ?>'>
+<em><?php echo $row['price']; ?>$</em>
                   </a>
 </div>
 
 <?php $row = mysqli_fetch_assoc($result); ?>
 <div class='carousel-item'>
-<a href = "cars.php?Id=<?php echo $row['Id'] ?>">
-<h2 class='testimonial-text '><?php echo $row['Name'] ?></h2>
-<img class='testimonial-image img-section' src='<?php echo $row["photo"] ?>' alt='lady-profile'>
-<em><?php echo $row['Price']; ?>$</em>
+<a href = "cars.php?Id=<?php echo $row['id'] ?>">
+<h2 class='testimonial-text '><?php echo $row['name'] ?></h2>
+<img class='testimonial-image img-section' src='<?php echo $row["image"] ?>' alt='lady-profile'>
+<em><?php echo $row['price']; ?>$</em>
                   </a>
 </div>
                  
