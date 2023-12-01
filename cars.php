@@ -36,9 +36,50 @@ $row = mysqli_fetch_assoc($result);
         </div>
         <h3>Product Description : </h3>
         <p><?php echo str_replace($newline, $replace, $row['description']); ?> </p>
-        <a method="POST" href="add.php?id=<?php echo $row['id']; ?>" class="add-to-cart-btn">ADD TO CART</a>
 
+        <!--script add to cart -->
+        <script type = 'text/javascript'>
+            function getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+    }
+   
 
+         function addToCart(){
+                        
+                  let flag = getCookie("id");
+                  let x = window.location.href; //to get the url
+                  let product_id = x.substr(x.length -1); //get the id from url string
+                    if(flag == ""){                       
+                        //first time
+                        document.cookie ='id ='+ product_id + ',';
+                    }else{
+
+                        if(getCookie("id").includes(product_id) == true){
+
+                        }else{
+                            document.cookie = 'id =' + getCookie("id") + product_id + ',';  
+                        }
+                                           
+                    }
+
+               
+        }
+
+        </script>
+
+        <a href="cart.php" target = "_blank" class="add-to-cart-btn" onclick = addToCart();>ADD TO CART</a>
+   
     </div>
 </section>
 

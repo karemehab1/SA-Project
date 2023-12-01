@@ -141,7 +141,7 @@ $logged_in=check_login($db);
 
     <section id="testimonials">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-pause="hover" data-keyboard="true">
-        <h1>Best salling Products</h1>
+        <h1>Best selling Products</h1>
           <div class="carousel-inner">
             <?php
            

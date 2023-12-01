@@ -1,0 +1,94 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.label1 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    /* Add margin between label1 groups */
+}
+
+.label1 label {
+    margin-top: 15px;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    /* Adjust margin between label and input */
+}
+
+.label1 input {
+    padding: 5px;
+    margin-bottom: 10px;
+    /* Adjust margin between input bars */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: calc(100% - 20px);
+    /* Adjust width to compensate for padding */
+}
+
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    width: -webkit-fill-available;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+/* Style radio buttons */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.payment {
+    margin-left: 132px;
+    display: grid;
+}
+
+input[type="radio"] {
+    accent-color: black;
+    width: 10%;
+    height: 20px;
+
+}
+
+h1 {
+    font: italic;
+}
