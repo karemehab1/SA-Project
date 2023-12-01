@@ -16,8 +16,11 @@ include "connect_db.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Cart</title>
   <link rel="stylesheet" href="css/cart.css">
+
+
 </head>
 <body>
+
   <h1>Shopping Cart</h1>
 
   <div class="small-container cart-page">
@@ -29,32 +32,37 @@ include "connect_db.php";
           <th>Quantity</th>
           <th>subtotal</th>       
         </tr>
-        <tr>
-            <td>
+
+            
             <?php
                    if(!isset($_COOKIE['id'])){
-                    echo "<h1>your Cart is Empty !</h1>";
+                    echo "<tr><h1>your Cart is Empty !</h1></tr>";
                    }else{
                         
-                $AddedToCartIds =  $_COOKIE['id'];
-                //echo $_COOKIE['id'];
-                
+                $AddedToCartIds =  $_COOKIE['id'];                
                 $arr = explode("," , $AddedToCartIds);//array contains the ids Addedd to cart
+
                 for($i = 0; $i < count($arr) -1; $i++){
                     
                     $sql = "SELECT name , image , price , id From pro WHERE id = '" . $arr[$i] . "' ";
                     $result = mysqli_query($db , $sql);
                     $row = mysqli_fetch_assoc($result);
                     echo "
+                    <tr class = 'row'>
+                    <td>
                     <div class='cart-info'>
                     <img src=".$row['image']." >
-                    <dive>
+                    <div>
                         <p> ".$row['name']." </p>
                         <small> price:$".$row['price']."</small>
-                       <a href=''>Remove</a>
+                       <a href='#' onclick=clicked(".$i.");>Remove</a>
                     </div>
                     
-                </div>
+                </div></td>
+                <td style = 'display:flex'>
+                 <input type='number' value='1'>                           
+             </td>
+             </tr>
                 ";
                             
                 }
@@ -63,14 +71,47 @@ include "connect_db.php";
                     
                 
             ?>
-            </td>
-            <td style = 'display:flex'> <input type='number' value='1'>
-                        <input type='number' value='1'>        
-             </td>
+            
+            <script>
+            
+               function clicked(x){
+                let rows = document.querySelectorAll(".row");
+                //remove the row from the table
+                rows[x].style.display = "none";
+                //remove the id from the cookies
+                removeFromTheCookie(x);
+               }
+               function getCookie(cname) {
+                  let name = cname + "=";
+                  let decodedCookie = decodeURIComponent(document.cookie);
+                  let ca = decodedCookie.split(';');
+                  for(let i = 0; i <ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                      c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                      return c.substring(name.length, c.length);
+                    }
+                  }
+                  return "";
+              }
+             
 
-            <td>$50.00</td>
-            <td></td>
-        </tr>
+               function removeFromTheCookie(indexOfId){
+                  let str = getCookie("id");               
+                  let newstr = str.substr(0 , indexOfId) + str.substr(indexOfId + 2);
+                  document.cookie = "id=" + newstr;
+
+                  
+
+               }
+
+                 
+                </script>
+            
+         
+           
        
     </table>
     <div class="total-price">
@@ -91,12 +132,14 @@ include "connect_db.php";
                 
             </tr>
         </table>
+                
     </div>
 
-    <button id="add-item">Add Item</button>
+    <a href = "Product_Page.php"><button id="add-item">Add Item</button></a>
     <button id="checkout">Checkout</button>
   </div>
 
-  <script src="script.js"></script>
+  
+ 
 </body>
 </html>

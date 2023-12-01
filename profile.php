@@ -24,9 +24,8 @@
                             <div class="mt-3">
                                 <h3 style="color: white;"><?php echo $_SESSION['name'] ?></h3>
                                 <a href="index.php">Home</a>
+                                <a href="cart.php">My Cart</a>
                                 <a href="contact.php">Support</a>
-                                <a href="feedback-list.php"><?php echo $_SESSION['User_name']=="admin"?"All":"My" ?> Reviews</a>
-
                                 <a href="Log-out.php">Signout</a>
 
                             </div>
@@ -74,7 +73,7 @@
                                     <?php echo $_SESSION['birthday']; ?>
                                 </div>
                             </div>
-                        </dir>
+                        </div>
                     </div>
                     <div class="card mb-3 content">
                         <h1 class="m-3">Recent Avtivites</h1>
