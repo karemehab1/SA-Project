@@ -4,6 +4,7 @@ include "Functions.php";
 check_login($db)
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -59,7 +60,7 @@ $row = mysqli_fetch_assoc($result);
                         
                   let flag = getCookie("id");
                   let x = window.location.href; //to get the url
-                  let product_id = x.substr(x.length -1); //get the id from url string
+                  let product_id = x.substr(x.indexOf("Id=") + 3); //get the id from url string
                     if(flag == ""){                       
                         //first time
                         document.cookie ='id ='+ product_id + ',';
@@ -77,9 +78,14 @@ $row = mysqli_fetch_assoc($result);
         }
 
         </script>
+<?php 
 
-        <a href="cart.php" target = "_blank" class="add-to-cart-btn" onclick = addToCart();>ADD TO CART</a>
-   
+
+if($_SESSION['userType'] != "admin"){
+    echo "<a href='cart.php' target = '_blank' class='add-to-cart-btn' onclick = addToCart();>ADD TO CART</a>";
+}
+        
+   ?>
     </div>
 </section>
 

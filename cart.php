@@ -35,7 +35,7 @@ include "connect_db.php";
 
             
             <?php
-                   if(!isset($_COOKIE['id'])){
+                   if(!isset($_COOKIE['id']) || $_COOKIE['id'] == ''){
                     echo "<tr><h1>your Cart is Empty !</h1></tr>";
                    }else{
                         
@@ -48,7 +48,7 @@ include "connect_db.php";
                     $result = mysqli_query($db , $sql);
                     $row = mysqli_fetch_assoc($result);
                     echo "
-                    <tr class = 'row'>
+                    <tr class = 'row' id = ".$row['id'].">
                     <td>
                     <div class='cart-info'>
                     <img src=".$row['image']." >
@@ -74,12 +74,17 @@ include "connect_db.php";
             
             <script>
             
-               function clicked(x){
+               function clicked(index){
+
                 let rows = document.querySelectorAll(".row");
-                //remove the row from the table
-                rows[x].style.display = "none";
+                //some important variables
+                let ItemId = rows[index].id;
+                let totalNumberOfRows = rows.length;
+                //remove the row from the table              
+                rows[index].style.display = "none";
+                
                 //remove the id from the cookies
-                removeFromTheCookie(x);
+                removeFromTheCookie(index , ItemId ,totalNumberOfRows);
                }
                function getCookie(cname) {
                   let name = cname + "=";
@@ -98,13 +103,29 @@ include "connect_db.php";
               }
              
 
-               function removeFromTheCookie(indexOfId){
-                  let str = getCookie("id");               
-                  let newstr = str.substr(0 , indexOfId) + str.substr(indexOfId + 2);
-                  document.cookie = "id=" + newstr;
+               function removeFromTheCookie(indexOfId, ItemId , totalNumberOfRows){
+                  let str = getCookie("id");
+                  console.log(str);
+                 let startIndexOfitemInCookies =  str.indexOf(ItemId);
+                 //console.log(startIndexOfitemInCookies + "start index");
+                 //console.log(str.length + "str length");
 
-                  
+                 //in case removing last element
+                 let newStr = "";
+                 if(startIndexOfitemInCookies == str.length - 2){
+                  newStr = str.substr(0 , startIndexOfitemInCookies);
+                 }else if(startIndexOfitemInCookies == 0){ //in case of the beganing of the str
 
+                  newStr = str.substr(str.indexOf("," , startIndexOfitemInCookies) + 1);
+                 }
+                 
+                 else {
+                  newStr = str.substr(0 , startIndexOfitemInCookies) + str.substr(str.indexOf("," , startIndexOfitemInCookies) + 1);
+                 }
+
+                 
+                  console.log(newStr);
+                  document.cookie = "id="+newStr;
                }
 
                  
