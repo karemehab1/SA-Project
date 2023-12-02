@@ -282,7 +282,7 @@ input
   
   .card__body {
     display: grid;
-    background-color: #fff;
+    background-color: #263e22;
     grid-auto-rows: calc(var(--card-height) - var(--header-height)) auto;
     height: var(--card-height);
     border-radius: 5px;
@@ -311,7 +311,7 @@ input
   }
 
   .card__body-cover img {
-    aspect-ratio: 16/9;
+    aspect-ratio: 8/9;
     object-fit: cover;
     width: 400px;
   }

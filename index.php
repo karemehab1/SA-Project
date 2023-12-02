@@ -69,7 +69,7 @@ $logged_in=check_login($db);
     height: 52px;
     line-height: 2;
     font-size: 22px;
-    background: #18221c;
+    background: #352121;
     color: #fff;
     margin: 0 auto;
 ">
@@ -205,17 +205,6 @@ $logged_in=check_login($db);
           </div><!-- end carousel-inner -->
 
       </div>
-    </section>
-
-
-    <!-- Press -->
-    <section id="press">
-      <img class="press-logos" src="images/TechCrunch.png" alt="tc-logo">
-      <img class="press-logos" src="images/tnw.png" alt="tnw-logo">
-      <img class="press-logos" src="images/bizinsider.png" alt="biz-insider-logo">
-      <img class="press-logos" src="images/mashable.png" alt="mashable-logo">
-
-    </section>
 
 
 

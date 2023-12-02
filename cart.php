@@ -19,7 +19,7 @@ include "connect_db.php";
 
 
 </head>
-<body>
+<body onchange = calculateTotal();>
 
   <h1>Shopping Cart</h1>
 
@@ -59,7 +59,7 @@ include "connect_db.php";
                     </div>
                     
                 </div></td>
-                <td style = 'display:flex'>
+                <td style = 'display:flex' onclick = calculateTotal();>
                  <input type='number' value='1'>                           
              </td>
              </tr>
@@ -75,10 +75,11 @@ include "connect_db.php";
             <script>
             
                function clicked(index){
-
+                location.reload();
                 let rows = document.querySelectorAll(".row");
                 //some important variables
                 let ItemId = rows[index].id;
+                
                 let totalNumberOfRows = rows.length;
                 //remove the row from the table              
                 rows[index].style.display = "none";
@@ -130,7 +131,7 @@ include "connect_db.php";
 
                  
                 </script>
-            
+           
          
            
        
@@ -139,28 +140,78 @@ include "connect_db.php";
         <table>
             <tr>
                 <td> subtotal </td>
-                <td> $200 </td>
+                <td id = "subtotal"> $200 </td>
 
             </tr>
             <tr>
-                <td> Tax </td>
-                <td> $35.00 </td>
+                <td> shipment </td>
+                <td id = 'shipment'> 0$ </td>
+                
+            </tr>
+            <tr>
+                <td> Discount </td>
+                <td id = 'discount'> 0$ </td>
                 
             </tr>
             <tr>
                 <td> Total</td>
-                <td> $230.00</td>
+                <td id = "total"> $230.00</td>
                 
             </tr>
         </table>
                 
     </div>
 
+
     <a href = "Product_Page.php"><button id="add-item">Add Item</button></a>
-    <button id="checkout">Checkout</button>
+    <?php
+    if(!isset($_COOKIE['id']) || $_COOKIE['id'] == ''){
+      
+                   }else {
+                    echo " <a href=  'payment.php'><button id='checkout'>Checkout</button></a>";
+                   }
+                   ?>
+   
   </div>
 
   
+
+  <script>
+    // Function to calculate total price
+    function calculateTotal() {
+        var rows = document.querySelectorAll('.row'); // Get all rows with class 'row'
+        var totalPrice = 0;
+
+        // Iterate through each row
+        rows.forEach(function(row) {
+            var priceElement = row.querySelector('small'); // Get the element containing the price
+            var priceText = priceElement.innerText.split('$')[1]; // Extract the price value (remove 'price:$' text)
+            var price = parseFloat(priceText); // Convert the price to a floating-point number
+            var quantity = parseFloat(row.querySelector('input').value); // Get the quantity
+
+            // Add the subtotal for this row to the total price
+            totalPrice += price * quantity;
+        });
+
+        // Display the total price (you can modify this part based on your needs)
+     
+        let subTotal = totalPrice.toFixed(2);
+        document.getElementById("subtotal").innerHTML = subTotal + '$';
+
+        document.getElementById("shipment").innerHTML = '0$';
+        
+        document.getElementById("total").innerHTML = subTotal + '$';
+        
+      }
+   
+
+        calculateTotal();
+
+    
+    // Example of how to call the calculateTotal function
+    
+</script>
+
  
 </body>
 </html>

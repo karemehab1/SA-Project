@@ -21,7 +21,7 @@
 
 .card__body {
   display: grid;
-  background-color: #fff;
+  background-color: #352121;
   grid-auto-rows: calc(var(--card-height) - var(--header-height)) auto;
   height: var(--card-height);
   border-radius: 5px;
@@ -50,7 +50,7 @@
 }
 
 .card__body-cover img {
-  aspect-ratio: 16/9;
+  aspect-ratio: 8/9;
   object-fit: cover;
   width: 400px;
 }

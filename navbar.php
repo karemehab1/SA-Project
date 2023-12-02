@@ -5,7 +5,7 @@
       </button>
       
       <a href="./index.php" class="navbar-brand">
-        <img src="./images/logo.png" alt="icon" style="width: 60px;
+        <img src="./images/image-(11).png" alt="icon" style="width: 60px;
     margin-left: 16px;">
     &copy
       </a>

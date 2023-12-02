@@ -14,6 +14,6 @@
     <i class="fa-brands fa-twitter" style="color:aqua;"></i>
     <i class="fa-brands fa-google" style="color:rgb(0, 137, 205);"></i>
 
-    <p class="p">© Copyright Qmotors thats for now</p>
+    <p class="p">© Copyright thats for now</p>
 
   </footer>
